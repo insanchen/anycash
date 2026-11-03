@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AnyCash: logo preview</title>
+<style>
+  :root{ --bg:#FAFAF8; --surface:#fff; --ink:#1A1C1A; --sage:#4A6B53; --muted:#5C6A60; }
+  .dark{ --bg:#14171A; --surface:#1E2226; --ink:#EDEFEA; --sage:#7FA386; --muted:#9AA69C; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:Manrope,system-ui,sans-serif; background:var(--bg); color:var(--ink); padding:32px; }
+  h1{ font-family:Outfit,sans-serif; font-weight:600; }
+  .bar{ display:flex; gap:16px; align-items:center; margin-bottom:24px; flex-wrap:wrap; }
+  button{ font:inherit; background:var(--sage); color:#fff; border:0; padding:10px 18px; border-radius:9999px; cursor:pointer; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; }
+  .card{ background:var(--surface); border:1px solid #E8EAE6; border-radius:24px; padding:24px; }
+  .card p{ color:var(--muted); font-size:14px; margin:12px 0 0; }
+  .tile{ width:128px; height:128px; border-radius:28px; display:flex; align-items:center; justify-content:center; background:var(--sage); }
+  .tile img{ width:80px; height:80px; }
+  .row{ display:flex; align-items:center; gap:16px; }
+  .word{ background:var(--surface); border:1px solid #E8EAE6; border-radius:24px; padding:24px; }
+  .word img{ height:48px; }
+  .inline{ display:inline-block; vertical-align:middle; }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <h1>AnyCash: logo system</h1>
+    <button onclick="document.documentElement.classList.toggle('dark')">Toggle Dark</button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="tile"><img src="logo-appicon.svg" alt="App icon"/></div>
+      <p>App icon (512²): sage tile, stacked coins and a growth sprout. Scales to 16px favicon.</p>
+    </div>
+    <div class="card">
+      <div class="tile" style="width:72px;height:72px;border-radius:16px;"><img src="logo-favicon.svg" alt="Favicon" style="width:48px;height:48px;"/></div>
+      <p>Favicon (64²): simplified coins and sprout for tiny sizes.</p>
+    </div>
+    <div class="card">
+      <div class="word"><img src="logo-wordmark.svg" alt="Wordmark"/></div>
+      <p>Wordmark: "Any" in sage, "Cash" in ink. Pairs with icon in top nav.</p>
+    </div>
+    <div class="card">
+      <div class="row">
+        <span class="inline"><img src="logo-appicon.svg" alt="icon" style="width:40px;height:40px;"/></span>
+        <strong>AnyCash</strong>
+      </div>
+      <p>Inline lockup (icon + word) for headers / login hero.</p>
+    </div>
+  </div>
+
+  <p style="color:var(--muted);margin-top:24px;font-size:13px;">
+    Files: logo-appicon.svg · logo-favicon.svg · logo-wordmark.svg ·
+    Palette: Sage #4A6B53 (dark #7FA386), Ink #1A1C1A, Canvas #FAFAF8/#14171A.
+    All SVG: vector, theme-aware tile. No raster needed.
+  </p>
+</body>
+</html>

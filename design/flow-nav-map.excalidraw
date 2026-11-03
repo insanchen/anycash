@@ -1,0 +1,45 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "elements": [
+    { "type": "text", "id": "title", "x": 40, "y": 30, "text": "AnyCash — Screen / Navigation Map", "fontSize": 24, "fontFamily": 1, "strokeColor": "#1e1e1e", "originalText": "AnyCash — Screen / Navigation Map", "autoResize": true },
+    { "type": "text", "id": "sub", "x": 40, "y": 64, "text": "Bottom nav (mobile) / top nav (desktop). 5 destinations. Account detail is a sub-route of Accounts.", "fontSize": 16, "fontFamily": 1, "strokeColor": "#5c6a60", "originalText": "Bottom nav (mobile) / top nav (desktop). 5 destinations. Account detail is a sub-route of Accounts.", "autoResize": true },
+
+    { "type": "rectangle", "id": "auth", "x": 40, "y": 130, "width": 200, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#d0bfff", "fillStyle": "solid", "originalText": "Login (no public register)" },
+    { "type": "text", "id": "t_auth", "x": 45, "y": 155, "width": 190, "height": 25, "text": "Login (admin-created users)", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "auth", "originalText": "Login (admin-created users)", "autoResize": true },
+
+    { "type": "rectangle", "id": "nav", "x": 300, "y": 130, "width": 760, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#a5d8ff", "fillStyle": "solid", "originalText": "Bottom Nav (5)" },
+    { "type": "text", "id": "t_nav", "x": 305, "y": 142, "width": 750, "height": 45, "text": "Dashboard   |   Transactions   |   Reports   |   Accounts   |   Settings", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "nav", "originalText": "Dashboard   |   Transactions   |   Reports   |   Accounts   |   Settings", "autoResize": true },
+
+    { "type": "rectangle", "id": "d", "x": 300, "y": 240, "width": 140, "height": 64, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Dashboard" },
+    { "type": "text", "id": "t_d", "x": 305, "y": 262, "width": 130, "height": 25, "text": "Dashboard", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "d", "originalText": "Dashboard", "autoResize": true },
+
+    { "type": "rectangle", "id": "t", "x": 460, "y": 240, "width": 160, "height": 64, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Transactions" },
+    { "type": "text", "id": "t_t", "x": 465, "y": 254, "width": 150, "height": 40, "text": "Transactions\nlist + filter + edit", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "t", "originalText": "Transactions\nlist + filter + edit", "autoResize": true },
+
+    { "type": "rectangle", "id": "r", "x": 640, "y": 240, "width": 160, "height": 64, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Reports" },
+    { "type": "text", "id": "t_r", "x": 645, "y": 254, "width": 150, "height": 40, "text": "Reports\ndaily/monthly/cat", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "r", "originalText": "Reports\ndaily/monthly/cat", "autoResize": true },
+
+    { "type": "rectangle", "id": "a", "x": 820, "y": 240, "width": 140, "height": 64, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Accounts" },
+    { "type": "text", "id": "t_a", "x": 825, "y": 262, "width": 130, "height": 25, "text": "Accounts", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "a", "originalText": "Accounts", "autoResize": true },
+
+    { "type": "rectangle", "id": "s", "x": 980, "y": 240, "width": 140, "height": 64, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Settings" },
+    { "type": "text", "id": "t_s", "x": 985, "y": 254, "width": 130, "height": 40, "text": "Settings\n7 sub-sections", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s", "originalText": "Settings\n7 sub-sections", "autoResize": true },
+
+    { "type": "rectangle", "id": "ad", "x": 820, "y": 350, "width": 200, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#fff3bf", "fillStyle": "solid", "originalText": "Account Detail (sub)" },
+    { "type": "text", "id": "t_ad", "x": 825, "y": 362, "width": 190, "height": 45, "text": "Account Detail (sub)\npersonal / joint / credit card", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "ad", "originalText": "Account Detail (sub)\npersonal / joint / credit card", "autoResize": true },
+
+    { "type": "rectangle", "id": "set", "x": 980, "y": 350, "width": 280, "height": 110, "roundness": { "type": 3 }, "backgroundColor": "#ffd8a8", "fillStyle": "solid", "originalText": "Settings sections" },
+    { "type": "text", "id": "t_set", "x": 985, "y": 362, "width": 270, "height": 85, "text": "Profile | Security | API Keys\nRate Source | Theme\nBackup | About", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "set", "originalText": "Profile | Security | API Keys\nRate Source | Theme\nBackup | About", "autoResize": true },
+
+    { "type": "arrow", "id": "a0", "x": 240, "y": 165, "width": 60, "height": 0, "points": [[0,0],[60,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "auth", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "nav", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a1", "x": 370, "y": 200, "width": 0, "height": 40, "points": [[0,0],[0,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "nav", "fixedPoint": [0.09,1] }, "endBinding": { "elementId": "d", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a2", "x": 460, "y": 200, "width": 0, "height": 40, "points": [[0,0],[0,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "nav", "fixedPoint": [0.28,1] }, "endBinding": { "elementId": "t", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a3", "x": 600, "y": 200, "width": 0, "height": 40, "points": [[0,0],[0,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "nav", "fixedPoint": [0.47,1] }, "endBinding": { "elementId": "r", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a4", "x": 740, "y": 200, "width": 0, "height": 40, "points": [[0,0],[0,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "nav", "fixedPoint": [0.66,1] }, "endBinding": { "elementId": "a", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a5", "x": 900, "y": 200, "width": 0, "height": 40, "points": [[0,0],[0,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "nav", "fixedPoint": [0.85,1] }, "endBinding": { "elementId": "s", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a6", "x": 890, "y": 304, "width": 0, "height": 46, "points": [[0,0],[0,46]], "endArrowhead": "arrow", "startBinding": { "elementId": "a", "fixedPoint": [0.5,1] }, "endBinding": { "elementId": "ad", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a7", "x": 1050, "y": 304, "width": 0, "height": 46, "points": [[0,0],[0,46]], "endArrowhead": "arrow", "startBinding": { "elementId": "s", "fixedPoint": [0.5,1] }, "endBinding": { "elementId": "set", "fixedPoint": [0.5,0] } }
+  ],
+  "appState": { "viewBackgroundColor": "#ffffff" }
+}

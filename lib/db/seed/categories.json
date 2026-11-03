@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "income": [
+    { "name": "Salary", "children": ["Gaji Pokok", "Bonus", "THR", "Lembur", "Komisi"] },
+    { "name": "Business", "children": ["Penjualan", "Jasa", "Project Freelance", "Royalti", "Affiliate", "Adsense"] },
+    { "name": "Investment", "children": ["Dividen", "Bunga Deposito", "Kupon Obligasi", "Capital Gain"] },
+    { "name": "Rental", "children": ["Sewa Rumah", "Sewa Kendaraan", "Sewa Properti"] },
+    { "name": "Gift", "children": ["Hadiah", "Angpao", "Donasi Diterima"] },
+    { "name": "Refund", "children": ["Refund Belanja", "Cashback", "Pajak Dikembalikan"] },
+    { "name": "Other Income", "children": ["Penjualan Barang Bekas", "Pendapatan Lainnya"] }
+  ],
+  "expense": [
+    { "name": "Housing", "children": ["Sewa Rumah", "KPR", "Renovasi", "Furniture", "Peralatan Rumah", "Kebersihan", "Security", "Iuran Lingkungan"] },
+    { "name": "Utilities", "children": ["Listrik", "Air", "Gas", "Internet", "TV Kabel", "Telepon Rumah"] },
+    { "name": "Food & Beverage", "children": ["Belanja Bulanan", "Makan di Rumah", "Makan di Luar", "Coffee Shop", "Snack", "Delivery", "Air Minum"] },
+    { "name": "Transportation", "children": ["BBM", "Tol", "Parkir", "Servis", "Oli", "Ban", "Pajak Kendaraan", "Asuransi Kendaraan", "Transport Online", "Taksi", "Kereta", "Bus", "Pesawat"] },
+    { "name": "Health", "children": ["Dokter", "Rumah Sakit", "Obat", "BPJS", "Asuransi Kesehatan", "Vitamin", "Medical Checkup", "Fitness", "Gym"] },
+    { "name": "Personal", "children": ["Pakaian", "Sepatu", "Tas", "Kosmetik", "Skincare", "Salon", "Barber", "Laundry", "Aksesoris"] },
+    { "name": "Entertainment", "children": ["Bioskop", "Streaming", "Game", "Hobi", "Buku", "Musik", "Event", "Rekreasi"] },
+    { "name": "Education", "children": ["Sekolah", "Kuliah", "Kursus", "Sertifikasi", "Buku", "Workshop", "Seminar", "Online Course"] },
+    { "name": "Family", "children": ["Orang Tua", "Anak", "Pasangan", "Pengasuh", "Uang Saku", "Kebutuhan Bayi"] },
+    { "name": "Work", "children": ["Peralatan Kerja", "Software", "Domain", "Hosting", "Cloud", "Office Supplies", "Meeting"] },
+    { "name": "Subscription", "children": ["Netflix", "Disney+", "ChatGPT", "Claude", "Spotify", "YouTube Premium", "Microsoft 365", "Adobe", "Google One", "GitHub", "VPS"] },
+    { "name": "Financial", "children": ["Biaya Admin Bank", "Biaya ATM", "Pajak", "Zakat", "Donasi", "Tabungan", "Dana Darurat"] },
+    { "name": "Loan", "children": ["Cicilan Rumah", "Cicilan Mobil", "Cicilan Motor", "Cicilan Kartu Kredit", "Pinjaman", "Hutang Teman"] },
+    { "name": "Gift & Charity", "children": ["Hadiah", "Donasi", "Zakat", "Persembahan Gereja", "Bantuan Sosial"] },
+    { "name": "Travel", "children": ["Hotel", "Tiket", "Visa", "Paspor", "Oleh-Oleh", "Tour", "Sewa Kendaraan"] },
+    { "name": "Pets", "children": ["Makanan", "Grooming", "Dokter Hewan", "Obat", "Mainan"] },
+    { "name": "Kids", "children": ["Popok", "Susu", "Mainan", "Sekolah", "Les", "Imunisasi"] },
+    { "name": "Shopping", "children": ["Marketplace", "Elektronik", "Gadget", "Furniture", "Peralatan Rumah", "Aksesoris"] },
+    { "name": "Miscellaneous", "children": ["Biaya Tak Terduga", "Kehilangan", "Denda", "Pengeluaran Lain"] }
+  ],
+  "transfer": [
+    { "name": "Transfer", "children": ["Cash to Bank", "Bank to Bank", "Bank to E-Wallet", "Bank to Investment"] }
+  ],
+  "adjustment": [
+    { "name": "Correction", "children": ["Koreksi Saldo", "Selisih", "Double Entry"] }
+  ]
+}

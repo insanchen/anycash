@@ -1,0 +1,28 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "elements": [
+    { "type": "text", "id": "title", "x": 40, "y": 30, "text": "Joint Account — Share to Existing User (v1)", "fontSize": 24, "fontFamily": 1, "strokeColor": "#1e1e1e", "originalText": "Joint Account — Share to Existing User (v1)", "autoResize": true },
+    { "type": "text", "id": "sub", "x": 40, "y": 64, "text": "Decision D1(A): no invite-by-email, no pending/approve state. User must already be registered.", "fontSize": 16, "fontFamily": 1, "strokeColor": "#5c6a60", "originalText": "Decision D1(A): no invite-by-email, no pending/approve state. User must already be registered.", "autoResize": true },
+
+    { "type": "rectangle", "id": "s1", "x": 60, "y": 140, "width": 220, "height": 80, "roundness": { "type": 3 }, "originalText": "Owner opens Account > Share" },
+    { "type": "text", "id": "t_s1", "x": 65, "y": 168, "width": 210, "height": 25, "text": "Owner opens Account > Share", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s1", "originalText": "Owner opens Account > Share", "autoResize": true },
+    { "type": "rectangle", "id": "s2", "x": 360, "y": 140, "width": 240, "height": 80, "roundness": { "type": 3 }, "backgroundColor": "#a5d8ff", "fillStyle": "solid", "originalText": "List registered users (search)" },
+    { "type": "text", "id": "t_s2", "x": 365, "y": 168, "width": 230, "height": 25, "text": "List registered users (search)", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s2", "originalText": "List registered users (search)", "autoResize": true },
+    { "type": "rectangle", "id": "s3", "x": 680, "y": 140, "width": 260, "height": 80, "roundness": { "type": 3 }, "backgroundColor": "#fff3bf", "fillStyle": "solid", "originalText": "Pick user + role (Owner / Member)" },
+    { "type": "text", "id": "t_s3", "x": 685, "y": 168, "width": 250, "height": 25, "text": "Pick user + role (Owner / Member)", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s3", "originalText": "Pick user + role (Owner / Member)", "autoResize": true },
+
+    { "type": "rectangle", "id": "s4", "x": 680, "y": 280, "width": 260, "height": 80, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Confirm share -> both see account" },
+    { "type": "text", "id": "t_s4", "x": 685, "y": 308, "width": 250, "height": 25, "text": "Confirm share -> both see account", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s4", "originalText": "Confirm share -> both see account", "autoResize": true },
+    { "type": "rectangle", "id": "s5", "x": 360, "y": 280, "width": 240, "height": 80, "roundness": { "type": 3 }, "backgroundColor": "#ffc9c9", "fillStyle": "solid", "originalText": "Validate: user exists, not self, not already shared" },
+    { "type": "text", "id": "t_s5", "x": 365, "y": 308, "width": 230, "height": 25, "text": "Validate: exists / not self / not dup", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s5", "originalText": "Validate: exists / not self / not dup", "autoResize": true },
+
+    { "type": "text", "id": "note", "x": 60, "y": 300, "width": 240, "height": 60, "text": "Hint copy: \"User must already be registered\"\nRole badge shows on the share list.", "fontSize": 16, "fontFamily": 1, "strokeColor": "#5c6a60", "originalText": "Hint copy: \"User must already be registered\"\nRole badge shows on the share list.", "autoResize": true },
+
+    { "type": "arrow", "id": "a1", "x": 280, "y": 180, "width": 80, "height": 0, "points": [[0,0],[80,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s1", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s2", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a2", "x": 600, "y": 180, "width": 80, "height": 0, "points": [[0,0],[80,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s2", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s3", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a3", "x": 810, "y": 220, "width": 0, "height": 60, "points": [[0,0],[0,60]], "endArrowhead": "arrow", "startBinding": { "elementId": "s3", "fixedPoint": [0.5,1] }, "endBinding": { "elementId": "s4", "fixedPoint": [0.5,0] } },
+    { "type": "arrow", "id": "a4", "x": 600, "y": 320, "width": 80, "height": 0, "points": [[0,0],[80,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s5", "fixedPoint": [0,0.5] }, "endBinding": { "elementId": "s4", "fixedPoint": [1,0.5] } }
+  ],
+  "appState": { "viewBackgroundColor": "#ffffff" }
+}

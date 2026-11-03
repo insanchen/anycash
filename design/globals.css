@@ -1,0 +1,55 @@
+/* AnyCash: Sage & Sand design tokens.
+   All component colors reference these variables (never raw hex in components).
+   Dark mode swaps the set via the .dark class (Tailwind `dark:` variant).
+   Values verified WCAG AA (≥4.5:1) against their surface. */
+
+:root {
+  --color-background: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-border: #E8EAE6;
+
+  --color-primary: #4A6B53;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #EAECE8;
+  --color-secondary-foreground: #2D3A31;
+
+  --color-income: #4A6B53;
+  --color-expense: #1A1C1A;
+  --color-destructive: #A8472A;
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-text-main: #1A1C1A;
+  --color-text-muted: #5C6A60;
+  --color-focus-ring: #4A6B53;
+}
+
+.dark {
+  --color-background: #14171A;
+  --color-surface: #1E2226;
+  --color-border: #2E3338;
+
+  --color-primary: #7FA386;
+  --color-primary-foreground: #14171A;
+  --color-secondary: #2A2F2C;
+  --color-secondary-foreground: #D7E0D9;
+
+  --color-income: #8FBF97;
+  --color-expense: #EDEFEA;
+  --color-destructive: #E08A6A;
+  --color-destructive-foreground: #14171A;
+
+  --color-text-main: #EDEFEA;
+  --color-text-muted: #9AA69C;
+  --color-focus-ring: #7FA386;
+}
+
+/* Semantic chart fills: theme-aware (fixes prototype R8 raw-hex charts). */
+:root {
+  --chart-income: var(--color-income);
+  --chart-expense: #C27359;     /* decorative only, never text */
+  --chart-grid: rgba(26,28,26,0.08);
+}
+.dark {
+  --chart-expense: #E08A6A;
+  --chart-grid: rgba(237,239,234,0.10);
+}

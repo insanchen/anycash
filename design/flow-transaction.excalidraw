@@ -1,0 +1,39 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "elements": [
+    { "type": "text", "id": "title", "x": 40, "y": 30, "text": "Transaction Lifecycle", "fontSize": 24, "fontFamily": 1, "strokeColor": "#1e1e1e", "originalText": "Transaction Lifecycle", "autoResize": true },
+    { "type": "text", "id": "sub", "x": 40, "y": 64, "text": "Create / edit / transfer-pair immutability / reversal. Balance auto-updates on each action.", "fontSize": 16, "fontFamily": 1, "strokeColor": "#5c6a60", "originalText": "Create / edit / transfer-pair immutability / reversal. Balance auto-updates on each action.", "autoResize": true },
+
+    { "type": "rectangle", "id": "s1", "x": 60, "y": 130, "width": 200, "height": 70, "roundness": { "type": 3 }, "originalText": "Open Quick Add / New Txn" },
+    { "type": "text", "id": "t_s1", "x": 65, "y": 155, "width": 190, "height": 25, "text": "Open Quick Add / New Txn", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s1", "originalText": "Open Quick Add / New Txn", "autoResize": true },
+
+    { "type": "rectangle", "id": "s2", "x": 320, "y": 130, "width": 200, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#a5d8ff", "fillStyle": "solid", "originalText": "Choose type" },
+    { "type": "text", "id": "t_s2", "x": 325, "y": 150, "width": 190, "height": 45, "text": "Choose type\nincome/expense/transfer/adjustment", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s2", "originalText": "Choose type\nincome/expense/transfer/adjustment", "autoResize": true },
+
+    { "type": "rectangle", "id": "s3", "x": 580, "y": 90, "width": 230, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#b2f2bb", "fillStyle": "solid", "originalText": "Single (income/expense/adjust)" },
+    { "type": "text", "id": "t_s3", "x": 585, "y": 115, "width": 220, "height": 25, "text": "Single (income/expense/adjust)", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s3", "originalText": "Single (income/expense/adjust)", "autoResize": true },
+
+    { "type": "rectangle", "id": "s4", "x": 580, "y": 200, "width": 230, "height": 90, "roundness": { "type": 3 }, "backgroundColor": "#fff3bf", "fillStyle": "solid", "originalText": "Transfer" },
+    { "type": "text", "id": "t_s4", "x": 585, "y": 215, "width": 220, "height": 60, "text": "Transfer\n- source + destination\n- cross-currency: rate + source snapshot", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s4", "originalText": "Transfer\n- source + destination\n- cross-currency: rate + source snapshot", "autoResize": true },
+
+    { "type": "rectangle", "id": "s5", "x": 880, "y": 130, "width": 210, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#d0bfff", "fillStyle": "solid", "originalText": "Save -> balance auto-update" },
+    { "type": "text", "id": "t_s5", "x": 885, "y": 155, "width": 200, "height": 25, "text": "Save -> balance auto-update", "fontSize": 17, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s5", "originalText": "Save -> balance auto-update", "autoResize": true },
+
+    { "type": "rectangle", "id": "s6", "x": 320, "y": 270, "width": 200, "height": 70, "roundness": { "type": 3 }, "backgroundColor": "#ffc9c9", "fillStyle": "solid", "originalText": "Edit single txn" },
+    { "type": "text", "id": "t_s6", "x": 325, "y": 295, "width": 190, "height": 25, "text": "Edit single txn", "fontSize": 18, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s6", "originalText": "Edit single txn", "autoResize": true },
+
+    { "type": "rectangle", "id": "s7", "x": 580, "y": 270, "width": 230, "height": 90, "roundness": { "type": 3 }, "backgroundColor": "#ffc9c9", "fillStyle": "solid", "originalText": "Transfer pair = IMMUTABLE" },
+    { "type": "text", "id": "t_s7", "x": 585, "y": 285, "width": 220, "height": 60, "text": "Transfer pair = IMMUTABLE\n- cannot edit\n- reverse via NEW reversal txn", "fontSize": 16, "fontFamily": 1, "strokeColor": "#1e1e1e", "textAlign": "center", "verticalAlign": "middle", "containerId": "s7", "originalText": "Transfer pair = IMMUTABLE\n- cannot edit\n- reverse via NEW reversal txn", "autoResize": true },
+
+    { "type": "arrow", "id": "a1", "x": 260, "y": 165, "width": 60, "height": 0, "points": [[0,0],[60,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s1", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s2", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a2", "x": 520, "y": 150, "width": 60, "height": -50, "points": [[0,0],[60,-50]], "endArrowhead": "arrow", "startBinding": { "elementId": "s2", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s3", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a3", "x": 520, "y": 175, "width": 60, "height": 40, "points": [[0,0],[60,40]], "endArrowhead": "arrow", "startBinding": { "elementId": "s2", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s4", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a4", "x": 810, "y": 125, "width": 70, "height": 0, "points": [[0,0],[70,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s3", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s5", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a5", "x": 810, "y": 245, "width": 70, "height": 0, "points": [[0,0],[70,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s4", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s5", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a6", "x": 260, "y": 235, "width": 60, "height": 0, "points": [[0,0],[60,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s1", "fixedPoint": [0.5,1] }, "endBinding": { "elementId": "s6", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a7", "x": 520, "y": 305, "width": 60, "height": 0, "points": [[0,0],[60,0]], "endArrowhead": "arrow", "startBinding": { "elementId": "s6", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s7", "fixedPoint": [0,0.5] } },
+    { "type": "arrow", "id": "a8", "x": 810, "y": 315, "width": 70, "height": -150, "points": [[0,0],[70,-150]], "endArrowhead": "arrow", "startBinding": { "elementId": "s7", "fixedPoint": [1,0.5] }, "endBinding": { "elementId": "s5", "fixedPoint": [0.5,1] } }
+  ],
+  "appState": { "viewBackgroundColor": "#ffffff" }
+}

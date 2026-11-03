@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-foreground: var(--color-primary-fg);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-fg);
+  --color-income: var(--color-income);
+  --color-expense: var(--color-expense);
+  --color-destructive: var(--color-destructive);
+  --color-destructive-soft: var(--color-destructive-soft);
+  --color-destructive-foreground: var(--color-destructive-fg);
+  --color-foreground: var(--color-text-main);
+  --color-muted-foreground: var(--color-text-muted);
+  --color-ring: var(--color-focus-ring);
+  --color-sage-highlight: var(--color-sage-highlight);
+  --font-heading: Georgia, Cambria, "Times New Roman", serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-card: 24px;
+  --radius-button: 9999px;
+  --shadow-card: 0 8px 24px rgba(63, 64, 48, 0.08);
+  --spacing-page-x: 16px;
+  --spacing-page-y: 24px;
+  --spacing-card-pad: 24px;
+  --spacing-gap: 24px;
+}
+
+:root {
+  --color-bg: #fbf6ed;
+  --color-surface: #fffdf9;
+  --color-border: #e4d7c5;
+  --color-primary: #68704c;
+  --color-primary-dark: #4f5838;
+  --color-primary-fg: #fffdf9;
+  --color-secondary: #e8ebd9;
+  --color-secondary-fg: #4f5838;
+  --color-income: #2f6e5a;
+  --color-expense: #3f4030;
+  --color-destructive: #a8483e;
+  --color-destructive-soft: #f4dfdc;
+  --color-destructive-fg: #ffffff;
+  --color-text-main: #3f4030;
+  --color-text-muted: #716f63;
+  --color-focus-ring: #4f5838;
+  --color-sage-highlight: #dce4c3;
+  --color-chart-expense: #b96f55;
+}
+
+.dark {
+  --color-bg: #171b16;
+  --color-surface: #20261e;
+  --color-border: #394238;
+  --color-primary: #9caf72;
+  --color-primary-dark: #d3dfac;
+  --color-primary-fg: #171b16;
+  --color-secondary: #2d382b;
+  --color-secondary-fg: #e2ead1;
+  --color-income: #9fcea7;
+  --color-expense: #f0e8dc;
+  --color-destructive: #e58c7e;
+  --color-destructive-soft: #4b2b2a;
+  --color-destructive-fg: #171b16;
+  --color-text-main: #f0f1e9;
+  --color-text-muted: #b2b9a8;
+  --color-focus-ring: #d3dfac;
+  --color-sage-highlight: #d3dfac;
+  --color-chart-expense: #dc9078;
+}
+
+html[data-theme='system'] { color-scheme: light dark; }
+
+body { background-color: var(--color-bg); color: var(--color-text-main); font-family: var(--font-body); }
+
+@layer base {
+  :focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 2px; }
+}
+
+.login-page { display: grid; grid-template-columns: 1.05fr .95fr; }
+.login-welcome { position: relative; background-image: radial-gradient(circle at 85% 85%, transparent 0 150px, rgba(255,255,255,.10) 151px 152px, transparent 153px); }
+.login-form-side { background: var(--color-bg); }
+
+.logo-light { display: block; }
+.logo-dark { display: none; }
+.dark .logo-light { display: none; }
+.dark .logo-dark { display: block; }
+.login-welcome .logo-light { display: none; }
+.login-welcome .logo-dark { display: block; }
+
+@media (max-width: 1023px) { .login-page { display: block; } }

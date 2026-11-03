@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="AnyCash app icon">
+  <title>AnyCash</title>
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="#4A6B53"/>
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="4"/>
+  <!-- stacked coins (cash / accounts) -->
+  <ellipse cx="256" cy="316" rx="82" ry="27" fill="#FFFFFF"/>
+  <ellipse cx="256" cy="284" rx="82" ry="27" fill="#FFFFFF"/>
+  <ellipse cx="256" cy="252" rx="82" ry="27" fill="#FFFFFF"/>
+  <!-- subtle coin band shading via opacity gaps handled by overlap -->
+  <!-- growth sprout (Sage & Sand: calm growth) -->
+  <path d="M256 252 L256 212" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" fill="none"/>
+  <path d="M256 226 C 234 222 221 205 221 187 C 243 189 258 205 256 226 Z" fill="#FFFFFF"/>
+  <path d="M256 234 C 278 230 291 213 291 195 C 269 197 254 213 256 234 Z" fill="#FFFFFF"/>
+</svg>

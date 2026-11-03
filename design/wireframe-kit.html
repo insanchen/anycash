@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AnyCash: wireframe kit (Sage & Sand)</title>
+<style>
+  /* ---- Tokens (mirror design/globals.css) ---- */
+  :root{
+    --color-background:#FAFAF8; --color-surface:#FFFFFF; --color-border:#E8EAE6;
+    --color-primary:#4A6B53; --color-primary-foreground:#FFFFFF;
+    --color-secondary:#EAECE8; --color-secondary-foreground:#2D3A31;
+    --color-income:#4A6B53; --color-expense:#1A1C1A;
+    --color-destructive:#A8472A; --color-destructive-foreground:#FFFFFF;
+    --color-text-main:#1A1C1A; --color-text-muted:#5C6A60;
+    --color-focus-ring:#4A6B53;
+    --chart-expense:#C27359;
+  }
+  .dark{
+    --color-background:#14171A; --color-surface:#1E2226; --color-border:#2E3338;
+    --color-primary:#7FA386; --color-primary-foreground:#14171A;
+    --color-secondary:#2A2F2C; --color-secondary-foreground:#D7E0D9;
+    --color-income:#8FBF97; --color-expense:#EDEFEA;
+    --color-destructive:#E08A6A; --color-destructive-foreground:#14171A;
+    --color-text-main:#EDEFEA; --color-text-muted:#9AA69C;
+    --color-focus-ring:#7FA386;
+    --chart-expense:#E08A6A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Manrope,system-ui,sans-serif;background:#EFEFEC;color:var(--color-text-main);}
+  body.dark{background:#0E1012}
+  h1,h2,h3{font-family:Outfit,system-ui,sans-serif;font-weight:600;margin:0}
+
+  /* toolbar */
+  .toolbar{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+    padding:14px 20px;background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+  .toolbar h1{font-size:20px}
+  .toolbar .spacer{flex:1}
+  .toolbar button{font:inherit;background:var(--color-primary);color:var(--color-primary-foreground);
+    border:0;padding:9px 16px;border-radius:9999px;cursor:pointer}
+  .toolbar nav{display:flex;gap:6px;flex-wrap:wrap}
+  .toolbar nav a{font-size:13px;text-decoration:none;color:var(--color-text-muted);
+    padding:6px 10px;border-radius:9999px}
+  .toolbar nav a:hover{background:var(--color-secondary);color:var(--color-text-main)}
+
+  .stage{display:flex;gap:28px;flex-wrap:wrap;padding:28px;align-items:flex-start;justify-content:center}
+  .screen{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .screen > label{font-size:13px;color:#6b7280;font-weight:600;letter-spacing:.02em}
+
+  /* phone */
+  .phone{position:relative;width:375px;height:760px;background:var(--color-background);
+    border:1px solid var(--color-border);border-radius:40px;overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 20px 50px rgba(0,0,0,.10)}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:10px 22px 4px;font-size:12px;color:var(--color-text-muted)}
+  .appbar{display:flex;align-items:center;gap:10px;padding:10px 16px;
+    background:var(--color-background);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border)}
+  .appbar .title{font-family:Outfit,sans-serif;font-weight:600;font-size:18px}
+  .appbar .grow{flex:1}
+  .iconbtn{width:38px;height:38px;border-radius:9999px;border:0;background:transparent;color:var(--color-text-main);
+    display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .iconbtn:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}
+  .main{flex:1;overflow-y:auto;padding:16px}
+  .main::-webkit-scrollbar{width:0}
+
+  .bottomnav{display:flex;justify-content:space-around;padding:10px 8px 16px;
+    background:var(--color-background);border-top:1px solid var(--color-border);backdrop-filter:blur(12px)}
+  .navitem{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;
+    color:var(--color-text-muted);text-decoration:none;width:56px}
+  .navitem.active{color:var(--color-primary)}
+  .navitem:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px;border-radius:10px}
+
+  /* components */
+  .hero{background:var(--color-primary);color:var(--color-primary-foreground);border-radius:24px;padding:22px;margin-bottom:14px}
+  .hero .lbl{font-size:13px;opacity:.85}
+  .hero .amt{font-family:Outfit,sans-serif;font-size:34px;font-weight:600;margin-top:4px}
+  .hero .sub{font-size:12px;opacity:.8;margin-top:8px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  .tile{background:var(--color-surface);border:1px solid var(--color-border);border-radius:16px;padding:12px}
+  .tile .lbl{font-size:11px;color:var(--color-text-muted)}
+  .tile .amt{font-size:15px;font-weight:600;margin-top:4px}
+  .secttl{font-size:13px;font-weight:600;margin:6px 2px 8px}
+  .accts{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
+  .accts::-webkit-scrollbar{height:0}
+  .acct{flex:0 0 200px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:18px;padding:14px}
+  .acct .nm{font-size:13px;font-weight:600}
+  .acct .cur{font-size:11px;color:var(--color-text-muted)}
+  .acct .bal{font-family:Outfit,sans-serif;font-size:20px;font-weight:600;margin-top:8px}
+  .acct.joint{background:linear-gradient(135deg,var(--color-primary),#3A5441);color:#fff}
+  .acct.joint .cur,.acct.joint .nm{color:rgba(255,255,255,.85)}
+  .badge{display:inline-block;font-size:10px;font-weight:600;background:var(--color-secondary);
+    color:var(--color-secondary-foreground);border-radius:9999px;padding:2px 8px}
+
+  .fab{position:absolute;right:18px;bottom:78px;width:56px;height:56px;border-radius:9999px;
+    background:var(--color-primary);color:var(--color-primary-foreground);border:0;display:flex;align-items:center;
+    justify-content:center;box-shadow:0 10px 24px rgba(74,107,83,.4);cursor:pointer;z-index:20}
+  .fab:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}
+
+  .txn{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--color-border)}
+  .txn .ic{width:40px;height:40px;border-radius:9999px;background:var(--color-secondary);
+    display:flex;align-items:center;justify-content:center;color:var(--color-secondary-foreground);flex:0 0 auto}
+  .txn .tt{flex:1;min-width:0}
+  .txn .tt .n{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .txn .tt .d{font-size:12px;color:var(--color-text-muted)}
+  .txn .am{font-size:14px;font-weight:600}
+  .am.inc{color:var(--color-income)} .am.exp{color:var(--color-expense)}
+
+  .chip{display:inline-flex;align-items:center;font-size:12px;padding:7px 12px;border-radius:9999px;
+    background:var(--color-secondary);color:var(--color-secondary-foreground);border:0;cursor:pointer}
+  .chip.active{background:var(--color-primary);color:var(--color-primary-foreground)}
+  .filterbar{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
+
+  .tabs{display:flex;gap:6px;background:var(--color-secondary);border-radius:9999px;padding:4px;margin-bottom:14px}
+  .tab{flex:1;text-align:center;font-size:12px;padding:8px;border-radius:9999px;color:var(--color-secondary-foreground);border:0;background:transparent;cursor:pointer}
+  .tab.active{background:var(--color-surface);color:var(--color-text-main);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+
+  .bar-chart{display:flex;align-items:flex-end;gap:8px;height:140px;padding:10px 4px;border-bottom:1px solid var(--color-border)}
+  .bar-chart .b{flex:1;background:var(--color-primary);border-radius:6px 6px 0 0;opacity:.9}
+  .bar-chart .b.alt{background:var(--chart-expense)}
+  .xaxis{display:flex;gap:8px;font-size:10px;color:var(--color-text-muted);margin-top:4px}
+  .xaxis span{flex:1;text-align:center}
+
+  .listrow{display:flex;align-items:center;gap:12px;padding:14px 4px;border-bottom:1px solid var(--color-border);text-decoration:none;color:inherit}
+  .listrow .chev{margin-left:auto;color:var(--color-text-muted)}
+  .listrow .ic{width:34px;height:34px;border-radius:10px;background:var(--color-secondary);display:flex;align-items:center;justify-content:center;color:var(--color-secondary-foreground)}
+  .listrow .t{font-size:14px;font-weight:600}
+  .listrow .s{font-size:12px;color:var(--color-text-muted)}
+
+  .cc{background:linear-gradient(135deg,#2D3A31,#4A6B53);color:#fff;border-radius:20px;padding:18px;margin-bottom:14px}
+  .cc .row{display:flex;justify-content:space-between;font-size:12px;opacity:.85}
+  .cc .num{font-family:Outfit,sans-serif;font-size:18px;letter-spacing:1px;margin-top:14px}
+  .cc .meta{display:flex;justify-content:space-between;margin-top:14px;font-size:12px;opacity:.9}
+  .gauge{height:8px;border-radius:9999px;background:rgba(255,255,255,.25);margin-top:10px;overflow:hidden}
+  .gauge > i{display:block;height:100%;background:#E08A6A;border-radius:9999px}
+  .due{display:flex;align-items:center;justify-content:space-between;background:rgba(224,138,106,.18);
+    border-radius:12px;padding:10px 12px;margin-top:10px;font-size:12px}
+
+  .sheet{position:absolute;left:0;right:0;bottom:0;background:var(--color-surface);
+    border-top-left-radius:24px;border-top-right-radius:24px;padding:18px 16px 24px;
+    box-shadow:0 -10px 30px rgba(0,0,0,.18);border-top:1px solid var(--color-border)}
+  .sheet h3{font-size:16px;margin-bottom:12px}
+  .field{margin-bottom:12px}
+  .field label{display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:5px}
+  .field input,.field select{width:100%;font:inherit;padding:11px 12px;border-radius:12px;
+    border:1px solid var(--color-border);background:var(--color-secondary);color:var(--color-text-main)}
+  .field input:focus,.field select:focus{outline:2px solid var(--color-focus-ring);outline-offset:1px}
+  .btn{width:100%;font:inherit;font-weight:600;padding:13px;border-radius:9999px;border:0;cursor:pointer}
+  .btn.pri{background:var(--color-primary);color:var(--color-primary-foreground)}
+  .btn.sec{background:var(--color-secondary);color:var(--color-secondary-foreground)}
+  .loginwrap{display:flex;flex-direction:column;justify-content:center;height:100%;padding:28px}
+  .loginwrap .brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+  .loginwrap .brand img{width:44px;height:44px}
+  .loginwrap .brand b{font-family:Outfit,sans-serif;font-size:24px}
+  .loginwrap .hint{font-size:12px;color:var(--color-text-muted);margin-top:-4px;margin-bottom:16px}
+  .lang{display:flex;gap:8px;margin-bottom:18px}
+  .seg{display:flex;background:var(--color-secondary);border-radius:9999px;padding:4px}
+  .seg button{flex:1;border:0;background:transparent;font:inherit;padding:8px;border-radius:9999px;color:var(--color-secondary-foreground);cursor:pointer}
+  .seg button.active{background:var(--color-surface);color:var(--color-text-main);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .scr{font-size:11px;color:var(--color-text-muted);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>AnyCash · Wireframe Kit</h1>
+  <div class="spacer"></div>
+  <nav>
+    <a href="#s-login">Login</a><a href="#s-dash">Dashboard</a><a href="#s-txn">Transactions</a>
+    <a href="#s-rep">Reports</a><a href="#s-set">Settings</a><a href="#s-acct">Account</a><a href="#s-joint">Joint Share</a>
+  </nav>
+  <button onclick="document.documentElement.classList.toggle('dark')">🌓 Toggle Dark</button>
+</div>
+
+<div class="stage">
+
+  <!-- 1 LOGIN -->
+  <section class="screen" id="s-login">
+    <label>1 · Login</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <div class="loginwrap">
+        <div class="brand"><img src="logo-appicon.svg" alt="AnyCash"/><b>AnyCash</b></div>
+        <p class="hint">Masuk ke akun kamu / Sign in to your account</p>
+        <div class="field"><label>Email</label><input value="you@anycash.app" aria-label="Email"/></div>
+        <div class="field"><label>Password</label><input type="password" value="••••••••" aria-label="Password"/></div>
+        <div class="lang">
+          <div class="seg" role="group" aria-label="Language">
+            <button class="active">ID</button><button>EN</button>
+          </div>
+        </div>
+        <button class="btn pri">Masuk / Sign in</button>
+        <p class="scr">No public registration. Admin creates users (PRD §9).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 DASHBOARD -->
+  <section class="screen" id="s-dash">
+    <label>2 · Dashboard</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar">
+        <span class="title">Beranda</span><span class="grow"></span>
+        <button class="iconbtn" aria-label="Language">🌐</button>
+        <button class="iconbtn" aria-label="Profile">👤</button>
+      </header>
+      <div class="main">
+        <div class="hero">
+          <div class="lbl">Total Saldo</div>
+          <div class="amt">Rp 12.480.000</div>
+          <div class="sub">+Rp 320.000 hari ini</div>
+        </div>
+        <div class="tiles">
+          <div class="tile"><div class="lbl">Hari ini</div><div class="amt">Rp 320rb</div></div>
+          <div class="tile"><div class="lbl">Bulan ini</div><div class="amt">Rp 2,1jt</div></div>
+          <div class="tile"><div class="lbl">Per akun</div><div class="amt">4 akun</div></div>
+        </div>
+        <div class="secttl">Akun</div>
+        <div class="accts">
+          <div class="acct"><div class="nm">Dompet Utama</div><div class="cur">IDR</div><div class="bal">Rp 4.200.000</div></div>
+          <div class="acct joint"><div class="nm">Keluarga <span class="badge">Joint</span></div><div class="cur">IDR · shared</div><div class="bal">Rp 6.100.000</div></div>
+          <div class="acct"><div class="nm">BCA Card</div><div class="cur">credit</div><div class="bal">Rp 1.180.000</div></div>
+        </div>
+      </div>
+      <button class="fab" aria-label="Tambah transaksi">＋</button>
+      <nav class="bottomnav">
+        <a class="navitem active" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem" href="#">💸<span>Txn</span></a>
+        <a class="navitem" href="#">📊<span>Laporan</span></a>
+        <a class="navitem" href="#">🏦<span>Akun</span></a>
+        <a class="navitem" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 3 TRANSACTIONS -->
+  <section class="screen" id="s-txn">
+    <label>3 · Transactions (list + filter + create sheet)</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar"><button class="iconbtn" aria-label="Back">‹</button><span class="title">Transaksi</span><span class="grow"></span><button class="iconbtn" aria-label="Filter">⚙️</button></header>
+      <div class="main">
+        <div class="filterbar">
+          <button class="chip active">Semua</button><button class="chip">Pemasukan</button>
+          <button class="chip">Pengeluaran</button><button class="chip">Transfer</button>
+        </div>
+        <div class="txn"><div class="ic">🍜</div><div class="tt"><div class="n">Makan siang GoCar</div><div class="d">27 Jul · Makanan</div></div><div class="am exp">−Rp 50.000</div></div>
+        <div class="txn"><div class="ic">💼</div><div class="tt"><div class="n">Gaji</div><div class="d">25 Jul · Gaji</div></div><div class="am inc">+Rp 8.000.000</div></div>
+        <div class="txn"><div class="ic">🔁</div><div class="tt"><div class="n">Transfer → Keluarga</div><div class="d">24 Jul · Transfer</div></div><div class="am exp">−Rp 500.000</div></div>
+        <div class="txn"><div class="ic">🛒</div><div class="tt"><div class="n">Belanja Indomaret</div><div class="d">23 Jul · Belanja</div></div><div class="am exp">−Rp 120.000</div></div>
+        <!-- create sheet overlay -->
+        <div class="sheet">
+          <h3>Tambah Transaksi</h3>
+          <div class="field"><label>Jumlah</label><input aria-label="Amount" placeholder="50.000"/></div>
+          <div class="field"><label>Tipe</label>
+            <select aria-label="Type"><option>Expense</option><option>Income</option><option>Transfer</option><option>Adjustment</option></select>
+          </div>
+          <div class="field"><label>Kategori</label><select aria-label="Category"><option>Makanan</option><option>Transport</option><option>Gaji</option></select></div>
+          <div class="field"><label>Catatan</label><input aria-label="Note" placeholder="GoCar to office"/></div>
+          <button class="btn pri">Simpan</button>
+        </div>
+      </div>
+      <nav class="bottomnav">
+        <a class="navitem" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem active" href="#">💸<span>Txn</span></a>
+        <a class="navitem" href="#">📊<span>Laporan</span></a>
+        <a class="navitem" href="#">🏦<span>Akun</span></a>
+        <a class="navitem" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 4 REPORTS -->
+  <section class="screen" id="s-rep">
+    <label>4 · Reports (tabs + export CSV)</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar"><button class="iconbtn" aria-label="Back">‹</button><span class="title">Laporan</span><span class="grow"></span><button class="iconbtn" aria-label="Export">⬇️</button></header>
+      <div class="main">
+        <div class="tabs">
+          <button class="tab active">Harian</button><button class="tab">Bulanan</button>
+          <button class="tab">Kategori</button><button class="tab">Arus</button>
+        </div>
+        <div class="bar-chart">
+          <div class="b" style="height:40%"></div><div class="b alt" style="height:65%"></div>
+          <div class="b" style="height:30%"></div><div class="b alt" style="height:80%"></div>
+          <div class="b" style="height:50%"></div><div class="b alt" style="height:90%"></div>
+          <div class="b" style="height:35%"></div>
+        </div>
+        <div class="xaxis"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+        <div class="tiles" style="margin-top:16px">
+          <div class="tile"><div class="lbl">Pemasukan</div><div class="amt" style="color:var(--color-income)">Rp 8,0jt</div></div>
+          <div class="tile"><div class="lbl">Pengeluaran</div><div class="amt">Rp 2,1jt</div></div>
+          <div class="tile"><div class="lbl">Net</div><div class="amt">Rp 5,9jt</div></div>
+        </div>
+        <button class="btn sec" style="margin-top:6px">Export CSV</button>
+        <p class="scr">Multi-currency: per-account in its own currency; grand-total row → IDR with editable rate (PRD §3.4).</p>
+      </div>
+      <nav class="bottomnav">
+        <a class="navitem" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem" href="#">💸<span>Txn</span></a>
+        <a class="navitem active" href="#">📊<span>Laporan</span></a>
+        <a class="navitem" href="#">🏦<span>Akun</span></a>
+        <a class="navitem" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 5 SETTINGS -->
+  <section class="screen" id="s-set">
+    <label>5 · Settings</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar"><button class="iconbtn" aria-label="Back">‹</button><span class="title">Setelan</span></header>
+      <div class="main">
+        <a class="listrow" href="#"><span class="ic">👤</span><span><span class="t">Profil</span><br><span class="s">Nama, email, bahasa</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">🔒</span><span><span class="t">Keamanan</span><br><span class="s">Password, sesi aktif</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">🔑</span><span><span class="t">API Keys</span><br><span class="s">Generate, scopes, revoke</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">💱</span><span><span class="t">Sumber Kurs</span><br><span class="s">Provider (3–5 rekomendasi)</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">🌓</span><span><span class="t">Tema</span><br><span class="s">Terang / Gelap / Sistem</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">💾</span><span><span class="t">Backup</span><br><span class="s">Download / Restore + preview</span></span><span class="chev">›</span></a>
+        <a class="listrow" href="#"><span class="ic">ℹ️</span><span><span class="t">Tentang</span><br><span class="s">Versi, kredit</span></span><span class="chev">›</span></a>
+      </div>
+      <nav class="bottomnav">
+        <a class="navitem" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem" href="#">💸<span>Txn</span></a>
+        <a class="navitem" href="#">📊<span>Laporan</span></a>
+        <a class="navitem" href="#">🏦<span>Akun</span></a>
+        <a class="navitem active" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 6 ACCOUNT DETAIL (credit card) -->
+  <section class="screen" id="s-acct">
+    <label>6 · Account Detail: Credit Card</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar"><button class="iconbtn" aria-label="Back">‹</button><span class="title">BCA Card</span><span class="grow"></span><button class="iconbtn" aria-label="Share">↗</button></header>
+      <div class="main">
+        <div class="cc">
+          <div class="row"><span>Credit Card</span><span>VISA</span></div>
+          <div class="num">•••• •••• •••• 4821</div>
+          <div class="meta"><span>Limit Rp 10.000.000</span><span>Rp 1.180.000 used</span></div>
+          <div class="gauge"><i style="width:88%"></i></div>
+          <div class="meta"><span>Tersedia Rp 8.820.000</span><span>88%</span></div>
+          <div class="due"><span>⏰ Jatuh tempo: 3 hari</span><button class="btn pri" style="width:auto;padding:6px 14px;font-size:12px">Bayar</button></div>
+        </div>
+        <div class="secttl">Transaksi</div>
+        <div class="txn"><div class="ic">🛒</div><div class="tt"><div class="n">Belanja</div><div class="d">26 Jul</div></div><div class="am exp">−Rp 320.000</div></div>
+        <div class="txn"><div class="ic">☕</div><div class="tt"><div class="n">Kopi</div><div class="d">24 Jul</div></div><div class="am exp">−Rp 45.000</div></div>
+        <p class="scr">Personal & Joint variants reuse this layout; Joint adds a "Shared with" member list + role badges.</p>
+      </div>
+      <nav class="bottomnav">
+        <a class="navitem" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem" href="#">💸<span>Txn</span></a>
+        <a class="navitem" href="#">📊<span>Laporan</span></a>
+        <a class="navitem active" href="#">🏦<span>Akun</span></a>
+        <a class="navitem" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 7 JOINT SHARE FLOW -->
+  <section class="screen" id="s-joint">
+    <label>7 · Joint Account: Share to Existing User</label>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>AnyCash</span></div>
+      <header class="appbar"><button class="iconbtn" aria-label="Back">‹</button><span class="title">Bagikan Akun</span></header>
+      <div class="main">
+        <p class="hint">User harus sudah terdaftar / User must already be registered.</p>
+        <div class="field"><label>Cari user</label><input aria-label="Search user" placeholder="nama atau email"/></div>
+        <div class="listrow" href="#"><span class="ic">👤</span><span><span class="t">Budi Santoso</span><br><span class="s">budi@anycash.app</span></span><span class="badge">Member</span></div>
+        <div class="listrow" href="#"><span class="ic">👤</span><span><span class="t">Sari Dewi</span><br><span class="s">sari@anycash.app</span></span><span class="badge">Owner</span></div>
+        <div class="sheet">
+          <h3>Konfirmasi Bagikan</h3>
+          <div class="field"><label>Ke user</label><select aria-label="To user"><option>Budi Santoso</option></select></div>
+          <div class="field"><label>Peran</label><select aria-label="Role"><option>Member (view + transact)</option><option>Owner (full)</option></select></div>
+          <button class="btn pri">Bagikan</button>
+          <p class="scr">No invite/approve state. Both see the account immediately (Decision D1-A).</p>
+        </div>
+      </div>
+      <nav class="bottomnav">
+        <a class="navitem" href="#">🏠<span>Beranda</span></a>
+        <a class="navitem" href="#">💸<span>Txn</span></a>
+        <a class="navitem" href="#">📊<span>Laporan</span></a>
+        <a class="navitem active" href="#">🏦<span>Akun</span></a>
+        <a class="navitem" href="#">⚙️<span>Setelan</span></a>
+      </nav>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

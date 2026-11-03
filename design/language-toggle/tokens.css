@@ -1,0 +1,104 @@
+/* AnyCash: Sage & Sand tokens (mirrors design/globals.css + tailwind.theme.json)
+   Used only by the language-toggle mockups. Keep in sync with design/DESIGN.md. */
+:root {
+  --color-background: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-border: #E8EAE6;
+  --color-primary: #4A6B53;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #EAECE8;
+  --color-secondary-foreground: #2D3A31;
+  --color-text-main: #1A1C1A;
+  --color-text-muted: #5C6A60;
+  --color-focus-ring: #4A6B53;
+  --radius-button: 9999px;
+  --radius-card: 24px;
+  --radius-md: 12px;
+  --font-heading: "Outfit", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+}
+.dark {
+  --color-background: #14171A;
+  --color-surface: #1E2226;
+  --color-border: #2E3338;
+  --color-primary: #7FA386;
+  --color-primary-foreground: #14171A;
+  --color-secondary: #2A2F2C;
+  --color-secondary-foreground: #D7E0D9;
+  --color-text-main: #EDEFEA;
+  --color-text-muted: #9AA69C;
+  --color-focus-ring: #7FA386;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  background: var(--color-background);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  padding: 32px 16px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+h1,h2,h3 { font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.01em; }
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.muted { color: var(--color-text-muted); font-size: 0.875rem; }
+.eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+
+/* Segmented language control (the toggle itself) */
+.seg {
+  display: inline-flex;
+  background: var(--color-secondary);
+  border-radius: var(--radius-button);
+  padding: 4px;
+  gap: 4px;
+}
+.seg button {
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-secondary-foreground);
+  padding: 8px 18px;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+.seg button:focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.seg .flag { font-size: 1rem; line-height: 1; }
+
+/* Header globe pill (compact variant) */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600;
+  padding: 7px 12px; border-radius: var(--radius-button);
+  cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease;
+}
+.pill:hover { border-color: var(--color-primary); }
+.pill:focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+.theme-toggle {
+  border: 1px solid var(--color-border); background: var(--color-surface);
+  color: var(--color-text-main); font-family: var(--font-body); font-size: 0.8125rem;
+  padding: 7px 12px; border-radius: var(--radius-button); cursor: pointer;
+}
+.theme-toggle:focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; }
+.note { margin-top: 16px; font-size: 0.8125rem; color: var(--color-text-muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }

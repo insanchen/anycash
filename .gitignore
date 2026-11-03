@@ -1,0 +1,78 @@
+
+backups/
+build/
+core*
+coverage/
+# debug
+# dependencies
+# docker
+.DS_Store
+# env
+.env
+.env*.local
+# IDE
+.idea/
+# local env files
+# misc
+.next/
+next-env.d.ts
+# next.js
+node_modules/
+npm-debug.log*
+out/
+*.pem
+pgdata/
+.pnp
+.pnp.js
+pnpm-debug.log*
+# production
+*.swo
+*.swp
+# testing
+*.tsbuildinfo
+# typescript
+# vercel
+.vercel
+.vscode/
+yarn-debug.log*
+yarn-error.log*
+.env.prod
+.env.production
+.env.production.local
+*.bundle
+.cache/
+.turbo/
+.pnpm-store/
+.eslintcache
+
+# Local project workspace (never commit)
+.anyware/
+
+# IDE metadata (never commit)
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Local tool state and instructions (never commit)
+.agents/
+.aider*
+.claude/
+.codex/
+.cursor/
+.windsurf/
+
+# Dependencies / vendor trees (never commit)
+node_modules/
+vendor/
+bower_components/
+
+# Build, test, and tool caches (never commit)
+dist/
+coverage/
+.nyc_output/
+.parcel-cache/
+.vite/
+.pytest_cache/
+*.tsbuildinfo

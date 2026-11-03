@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tokens.css" />
+<title>AnyCash: Language toggle, lean (header pill)</title>
+</head>
+<body>
+<div class="wrap">
+  <div class="toolbar">
+    <strong style="font-family:var(--font-heading)">AnyCash</strong>
+    <div style="display:flex; gap:8px; align-items:center">
+      <!-- Single compact control: current language, tap to swap -->
+      <button class="pill" id="langPill" aria-label="Toggle language" aria-pressed="false">
+        <span>🌐</span><span id="langPillLabel">ID</span>
+      </button>
+      <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">☾ / ☀</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow" i18n="settings.section">Pengaturan</p>
+    <h2 style="font-size:1.5rem; margin:4px 0 20px" i18n="settings.profile">Profil</h2>
+    <div class="row" style="padding:16px 0; border-top:1px solid var(--color-border)">
+      <div>
+        <h3 style="font-size:1.125rem" i18n="settings.language">Bahasa</h3>
+        <p class="muted" i18n="settings.language.desc">Pilih bahasa antarmuka.</p>
+      </div>
+      <span class="muted" id="currentLang">ID</span>
+    </div>
+    <p class="note" id="persistNote">✓ Disimpan ke cookie <code>locale</code>.</p>
+  </div>
+
+  <p class="note">Demo lean: satu tombol di header menampilkan bahasa aktif (ID / EN), tap untuk tukar. Paling kecil, menyatu dengan baris ikon tema. Cocok kalau ruang Settings sempit. Tetap memanggil API cookie agar persisten.</p>
+</div>
+
+<script>
+  const dict = {
+    id: { 'settings.section':'Pengaturan','settings.profile':'Profil','settings.language':'Bahasa',
+          'settings.language.desc':'Pilih bahasa antarmuka.','pillLabel':'ID','note':'✓ Disimpan ke cookie locale.' },
+    en: { 'settings.section':'Settings','settings.profile':'Profile','settings.language':'Language',
+          'settings.language.desc':'Choose the interface language.','pillLabel':'EN','note':'✓ Saved to locale cookie.' }
+  };
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.getElementById('langPillLabel').textContent = dict[lang]['pillLabel'];
+    document.getElementById('currentLang').textContent = dict[lang]['pillLabel'];
+    document.getElementById('langPill').setAttribute('aria-pressed', String(lang==='en'));
+    document.querySelectorAll('[i18n]').forEach(el=>{ el.textContent = dict[lang][el.getAttribute('i18n')]; });
+    document.getElementById('persistNote').textContent = dict[lang]['note'];
+  }
+  document.getElementById('langPill').addEventListener('click', ()=> setLang(document.documentElement.lang==='id'?'en':'id'));
+</script>
+</body>
+</html>

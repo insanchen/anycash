@@ -1,0 +1,15 @@
+FROM node:26-alpine
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@12.16.1 --activate
+
+# Copy the manifests first so Docker can cache the dependency layer.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
+COPY . .
+
+EXPOSE 8902
+
+CMD ["pnpm", "dev"]

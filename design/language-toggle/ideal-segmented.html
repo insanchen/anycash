@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tokens.css" />
+<title>AnyCash: Language toggle, ideal (segmented)</title>
+</head>
+<body>
+<div class="wrap">
+  <div class="toolbar">
+    <strong style="font-family:var(--font-heading)">AnyCash</strong>
+    <div style="display:flex; gap:8px; align-items:center">
+      <!-- Header quick-access pill (compact, always reachable) -->
+      <button class="pill" id="headerPill" aria-label="Ganti bahasa">
+        <span id="headerPillLabel">🌐 Bahasa</span>
+      </button>
+      <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">☾ / ☀</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="eyebrow" i18n="settings.section">Pengaturan</p>
+    <h2 style="font-size:1.5rem; margin:4px 0 20px" i18n="settings.profile">Profil</h2>
+
+    <!-- Language (Bahasa) row, mirrors the theme and rate-source pattern -->
+    <div class="row" style="padding:16px 0; border-top:1px solid var(--color-border)">
+      <div>
+        <h3 style="font-size:1.125rem" i18n="settings.language">Bahasa</h3>
+        <p class="muted" i18n="settings.language.desc">Pilih bahasa antarmuka. Pilihan disimpan di perangkat ini.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Pilih bahasa">
+        <button id="seg-id" aria-pressed="true" onclick="setLang('id')">
+          <span class="flag">🇮🇩</span> ID
+        </button>
+        <button id="seg-en" aria-pressed="false" onclick="setLang('en')">
+          <span class="flag">🇬🇧</span> EN
+        </button>
+      </div>
+    </div>
+
+    <!-- Theme row kept for context (existing pattern) -->
+    <div class="row" style="padding:16px 0; border-top:1px solid var(--color-border)">
+      <div>
+        <h3 style="font-size:1.125rem" i18n="settings.theme">Tema</h3>
+      </div>
+      <div class="seg" role="group" aria-label="Pilih tema">
+        <button aria-pressed="true">Terang</button>
+        <button aria-pressed="false">Gelap</button>
+        <button aria-pressed="false">Sistem</button>
+      </div>
+    </div>
+
+    <p class="note" id="persistNote">✓ Disimpan ke cookie <code>locale</code>, bertahan saat reload.</p>
+  </div>
+
+  <p class="note">Demo: klik ID / EN (baik di baris Pengaturan maupun pil di header). Semua label di atas ikut berubah secara langsung, meniru kerja <code>t()</code>. Pilihan disimpan via cookie agar sama saat render server &amp; client (tidak ada hydration mismatch).</p>
+</div>
+
+<script>
+  const dict = {
+    id: {
+      'settings.section':'Pengaturan','settings.profile':'Profil',
+      'settings.language':'Bahasa','settings.language.desc':'Pilih bahasa antarmuka. Pilihan disimpan di perangkat ini.',
+      'settings.theme':'Tema','header.pill':'🌐 Bahasa'
+    },
+    en: {
+      'settings.section':'Settings','settings.profile':'Profile',
+      'settings.language':'Language','settings.language.desc':'Choose the interface language. Saved on this device.',
+      'settings.theme':'Theme','header.pill':'🌐 Language'
+    }
+  };
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    // segmented control
+    document.getElementById('seg-id').setAttribute('aria-pressed', String(lang==='id'));
+    document.getElementById('seg-en').setAttribute('aria-pressed', String(lang==='en'));
+    // header pill
+    document.getElementById('headerPillLabel').textContent = dict[lang]['header.pill'];
+    // all i18n labels
+    document.querySelectorAll('[i18n]').forEach(el=>{ el.textContent = dict[lang][el.getAttribute('i18n')]; });
+    document.getElementById('persistNote').textContent =
+      lang==='id' ? '✓ Disimpan ke cookie locale, bertahan saat reload.'
+                 : '✓ Saved to locale cookie, persists on reload.';
+  }
+  document.getElementById('headerPill').addEventListener('click', ()=> setLang(document.documentElement.lang==='id'?'en':'id'));
+</script>
+</body>
+</html>
