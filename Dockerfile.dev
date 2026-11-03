@@ -2,7 +2,7 @@ FROM node:26-alpine
 
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@12.16.1 --activate
+RUN npm install --global --allow-scripts=pnpm pnpm@12.16.1
 
 # Copy the manifests first so Docker can cache the dependency layer.
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./

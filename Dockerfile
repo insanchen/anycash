@@ -1,7 +1,7 @@
 FROM node:26-alpine AS builder
 WORKDIR /app
 ENV NODE_ENV=production
-RUN corepack enable && corepack prepare pnpm@12.16.1 --activate
+RUN npm install --global --allow-scripts=pnpm pnpm@12.16.1
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile --prod=false
 COPY . .

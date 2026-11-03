@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start -p 8902",
     "lint": "eslint .",
-    "test": "node tests/unit/transaction-datetime.ts && node tests/unit/transaction-routing.ts && node tests/transaction-date-contract.mjs && node tests/reports-ui-contract.mjs"
+    "test": "node tests/unit/transaction-datetime.ts && node tests/unit/transaction-routing.ts && node tests/transaction-date-contract.mjs && node tests/reports-ui-contract.mjs && node tests/auth-session-keepalive-contract.mjs"
   },
   "dependencies": {
     "argon2": "^0.45.2",

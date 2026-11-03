@@ -1,10 +1,13 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 
 export function AuthSessionKeepAlive() {
+  const router = useRouter();
+
   useEffect(() => {
     let stopped = false;
 
@@ -15,7 +18,7 @@ export function AuthSessionKeepAlive() {
           credentials: 'same-origin',
           cache: 'no-store',
         });
-        if (!stopped && response.status === 401) window.location.assign('/login');
+        if (!stopped && response.status === 401) router.replace('/login');
       } catch {
         // A transient network failure should not log the user out.
       }
@@ -34,7 +37,7 @@ export function AuthSessionKeepAlive() {
       window.clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [router]);
 
   return null;
 }
