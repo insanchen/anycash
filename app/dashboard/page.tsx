@@ -8,6 +8,7 @@ import { verifyAccessToken } from '@/lib/auth/jwt';
 import { db } from '@/lib/db';
 import { accounts, accountMembers, transactions, userAccountOrder } from '@/lib/db/schema';
 import AccountCarousel from '@/components/dashboard/AccountCarousel';
+import { buildCashflowPoints } from '@/components/dashboard/cashflow-chart';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,6 +28,10 @@ function formatMoney(value: number, currency = 'IDR') {
 
 function formatDate(value: Date | string) {
   return new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium' }).format(new Date(value));
+}
+
+function formatChartDate(value: string) {
+  return new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`));
 }
 
 async function getDashboardData(): Promise<DashboardData | null> {
@@ -64,8 +69,7 @@ async function getDashboardData(): Promise<DashboardData | null> {
 export default async function DashboardHomePage() {
   const locale = await getLocale();
   const data = await getDashboardData();
-  const chartRows = [...(data?.chartRows ?? [])].reverse();
-  const maxAmount = Math.max(...chartRows.map((transaction) => Math.abs(Number(transaction.amount))), 1);
+  const chartPoints = buildCashflowPoints(data?.chartRows ?? []);
 
   return (
     <DashboardShell>
@@ -107,16 +111,22 @@ export default async function DashboardHomePage() {
             <div><p className="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">{t(locale, 'dash.cashflow')}</p><h2 className="mt-2 font-heading text-2xl font-semibold">{t(locale, 'dash.cashflowTitle')}</h2></div>
             <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-bold text-secondary-foreground">{t(locale, 'dash.lastActivity')}</span>
           </div>
-          {chartRows.length ? (
+          {chartPoints.length ? (
             <div className="mt-7">
               <svg viewBox="0 0 640 180" className="h-44 w-full" role="img" aria-label={t(locale, 'dash.cashflow')}>
                 <path d="M0 146H640M0 92H640M0 38H640" stroke="var(--color-border)" strokeDasharray="4 8" strokeWidth="1" />
-                <polyline fill="none" stroke="var(--color-income)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" points={chartRows.map((transaction, index) => `${20 + index * (600 / Math.max(chartRows.length - 1, 1))},${150 - (Math.abs(Number(transaction.amount)) / maxAmount) * 112}`).join(' ')} />
-                {chartRows.map((transaction, index) => <circle key={transaction.id} cx={20 + index * (600 / Math.max(chartRows.length - 1, 1))} cy={150 - (Math.abs(Number(transaction.amount)) / maxAmount) * 112} r="5" fill="var(--color-surface)" stroke="var(--color-income)" strokeWidth="3" />)}
+                <polyline fill="none" stroke="var(--color-income)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" points={chartPoints.map((point) => `${point.x},${point.incomeY}`).join(' ')} />
+                <polyline fill="none" stroke="var(--color-chart-expense)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" strokeDasharray="8 6" points={chartPoints.map((point) => `${point.x},${point.expenseY}`).join(' ')} />
+                {chartPoints.map((point) => <circle key={point.date} cx={point.x} cy={point.incomeY} r="5" fill="var(--color-surface)" stroke="var(--color-income)" strokeWidth="3" />)}
+                {chartPoints.map((point) => <rect key={point.date} x={point.x - 3} y={point.expenseY - 3} width="6" height="6" fill="var(--color-surface)" stroke="var(--color-chart-expense)" strokeWidth="3" />)}
               </svg>
-              <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground"><span>{formatDate(chartRows[0].date)}</span><span>{t(locale, 'dash.tapReports')}</span><span>{formatDate(chartRows.at(-1)!.date)}</span></div>
+              <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-2"><span className="h-0.5 w-5 bg-income" aria-hidden="true" />{t(locale, 'report.incomeLine')}</span>
+                <span className="inline-flex items-center gap-2"><span className="w-5 border-t-2 border-dashed border-[var(--color-chart-expense)]" aria-hidden="true" />{t(locale, 'report.expenseLine')}</span>
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-2 text-[11px] text-muted-foreground"><span>{formatChartDate(chartPoints[0].date)}</span><span>{t(locale, 'dash.tapReports')}</span><span>{chartPoints.length > 1 ? formatChartDate(chartPoints.at(-1)!.date) : ''}</span></div>
             </div>
-          ) : <div className="mt-7 rounded-2xl bg-background px-4 py-10 text-center text-sm text-muted-foreground">{t(locale, 'dash.noTransactions')}</div>}
+          ) : <div className="mt-7 rounded-2xl bg-background px-4 py-10 text-center text-sm text-muted-foreground">{t(locale, 'report.empty')}</div>}
         </div>
 
         <AccountCarousel

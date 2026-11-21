@@ -218,7 +218,7 @@ function ReportTable({ period, rows, t }: { period: ReportPeriod; rows: ReportRo
   if (!visibleRows.length) return <EmptyState loading={false} label={t('report.empty')} />;
   const labelKey = period === 'monthly' ? 'report.month' : 'report.date';
   const field = period === 'monthly' ? 'month' : 'date';
-  return <table className="w-full min-w-[620px] text-sm"><thead className="border-b border-border text-left text-xs uppercase tracking-[0.1em] text-muted-foreground"><tr><th scope="col" className="px-3 py-3">{t(labelKey)}</th><th scope="col" className="px-3 py-3 text-right">{t('report.income')}</th><th scope="col" className="px-3 py-3 text-right">{t('report.expense')}</th><th scope="col" className="px-3 py-3 text-right">{t('report.net')}</th></tr></thead><tbody className="divide-y divide-border">{visibleRows.map((row, index) => { const income = readNumber(row.income); const expense = readNumber(row.expense); return <tr key={`${String(row[field] ?? index)}-${index}`}><th scope="row" className="px-3 py-3 text-left font-bold">{formatPeriodLabel(String(row[field] ?? ''), period)}</th><td className="px-3 py-3 text-right text-income">{formatMoney(income)}</td><td className="px-3 py-3 text-right text-expense">{formatMoney(expense)}</td><td className={`px-3 py-3 text-right font-bold ${income - expense >= 0 ? 'text-income' : 'text-expense'}`}>{formatMoney(income - expense)}</td></tr>; })}</tbody></table>;
+  return <table className="w-full min-w-[620px] text-sm"><thead className="border-b border-border text-left text-xs uppercase tracking-[0.1em] text-muted-foreground"><tr><th scope="col" className="px-3 py-3">{t(labelKey)}</th><th scope="col" className="px-3 py-3 text-right">{t('report.income')}</th><th scope="col" className="px-3 py-3 text-right">{t('report.expense')}</th><th scope="col" className="px-3 py-3 text-right">{t('report.net')}</th></tr></thead><tbody className="divide-y divide-border">{visibleRows.map((row, index) => { const income = readNumber(row.income); const expense = readNumber(row.expense); return <tr key={`${String(row[field] ?? index)}-${index}`}><th scope="row" className="px-3 py-3 text-left font-bold">{formatPeriodLabel(String(row[field] ?? ''), period)}</th><td className="px-3 py-3 text-right text-income">{formatMoney(income)}</td><td className="px-3 py-3 text-right text-expense">{formatMoney(expense)}</td><td className={`px-3 py-3 text-right font-bold ${income + expense >= 0 ? 'text-income' : 'text-expense'}`}>{formatMoney(income + expense)}</td></tr>; })}</tbody></table>;
 }
 
 function CategoryTable({ rows, t }: { rows: ReportRow[]; t: (key: string, fallback?: string) => string }) {
@@ -241,7 +241,7 @@ function summarise(rows: ReportRow[]): Summary {
   const income = rows.reduce((total, row) => total + readNumber(row.income), 0);
   const expense = rows.reduce((total, row) => total + readNumber(row.expense), 0);
   const transfer = rows.reduce((total, row) => total + readNumber(row.transfer), 0);
-  const net = income - expense;
+  const net = income + expense;
   return { income, expense, transfer, net, savingRate: income > 0 ? Math.max(0, (net / income) * 100) : 0 };
 }
 
