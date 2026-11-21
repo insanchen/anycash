@@ -107,6 +107,7 @@
     "add": { "id": "Tambah transaksi", "en": "Add transaction" },
     "amount": { "id": "Jumlah", "en": "Amount" },
     "type": { "id": "Tipe", "en": "Type" },
+    "account": { "id": "Akun", "en": "Account" },
     "category": { "id": "Kategori", "en": "Category" },
     "note": { "id": "Catatan", "en": "Note" },
     "save": { "id": "Simpan", "en": "Save" },

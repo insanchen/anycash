@@ -8,7 +8,7 @@ type TxType = 'income' | 'expense' | 'transfer' | 'adjustment';
 
 type TransactionRow = {
   id: string;
-  account_id: string | null;
+  accountId: string;
   type: TxType;
   amount: number;
   currency: string;
@@ -110,7 +110,7 @@ export default function TransactionsClient() {
     setEditingId(tx.id);
     setForm({
       type: tx.type,
-      account_id: tx.account_id ?? '',
+      account_id: tx.accountId,
       account_name: '',
       payment_method: '',
       destination_account_id: '',
@@ -314,7 +314,7 @@ export default function TransactionsClient() {
               <option value="adjustment">{t('txn.typeAdjustment')}</option>
             </select>
 
-            <label className="text-xs text-muted-foreground" htmlFor="tx-account">{t('account.form.type')}</label>
+            <label className="text-xs text-muted-foreground" htmlFor="tx-account">{t('txn.account')}</label>
             <select
               id="tx-account"
               value={form.account_id}

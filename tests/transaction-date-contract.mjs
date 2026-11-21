@@ -36,4 +36,8 @@ assert.match(client, /date: businessDateString\(\)/);
 // Changing the account in the preview clears the parse-derived routing fields.
 assert.match(client, /account_id: e\.target\.value, account_name: '', payment_method: ''/);
 
+// Editing must use the row's camelCase account ID, not the write payload's snake_case key.
+assert.match(client, /account_id:\s*tx\.accountId\b/, 'Editing should select the saved account');
+assert.match(client, /htmlFor="tx-account"[^>]*>\{t\('txn\.account'\)\}/, 'The account selector should be labeled Account');
+
 console.log('transaction date/routing contract passed');
